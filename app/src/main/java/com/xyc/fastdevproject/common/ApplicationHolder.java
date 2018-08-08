@@ -15,7 +15,7 @@ import com.xyc.fastdevproject.model.VersionModel;
 
 public class ApplicationHolder {
 
-    private  Context mContext;
+    private Context mContext;
     private static final Handler mainHandler = new Handler();
     public static ApplicationHolder instance = null;
 
@@ -30,7 +30,7 @@ public class ApplicationHolder {
         return instance;
     }
 
-    public  void setAppContext(Context context) {
+    public void setAppContext(Context context) {
         if (context == null) {
             Log.e("ApplicationHolder", "try to set null application, return");
             return;
@@ -38,7 +38,7 @@ public class ApplicationHolder {
         mContext = context;
     }
 
-    public  Context getAppContext() {
+    public Context getAppContext() {
         if (mContext == null) {
             Log.e("ApplicationHolder",
                     "Global ApplicationContext is null, Please call ApplicationHolder.setmApplication(application) at the onCreate() method of Activity and Application");
