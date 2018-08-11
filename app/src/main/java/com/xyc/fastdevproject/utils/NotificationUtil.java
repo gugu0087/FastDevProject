@@ -100,8 +100,10 @@ public class NotificationUtil {
         builderProgress.setSmallIcon(R.mipmap.ic_launcher);
         builderProgress.setTicker("下载通知");
         builderProgress.setProgress(100, progress, false);
-        //当通知被点击的时候，跳转到pendingIntent中
-        builderProgress.setContentIntent(pendingIntent);
+        if(pendingIntent!=null){
+            //当通知被点击的时候，跳转到pendingIntent中
+            builderProgress.setContentIntent(pendingIntent);
+        }
         return builderProgress.build();
     }
 

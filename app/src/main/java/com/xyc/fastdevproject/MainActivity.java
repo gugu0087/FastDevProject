@@ -2,6 +2,7 @@ package com.xyc.fastdevproject;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.TextView;
 
 import com.xyc.fastdevproject.utils.ToastUtil;
@@ -21,11 +22,19 @@ public class MainActivity extends BaseActivity {
     }
 
     @Override
+    protected void initHeader() {
+        setHeaderTitle("测试页面");
+        setRightIconVisibility(View.VISIBLE);
+
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         tvTips.setText("dsssd");
+
     }
+
     @OnClick({R.id.tvTips})
     public void setTips() {
         ToastUtil.showShort("hha");

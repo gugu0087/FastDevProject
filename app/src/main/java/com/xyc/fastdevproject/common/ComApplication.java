@@ -1,10 +1,20 @@
 package com.xyc.fastdevproject.common;
 
+import android.Manifest;
 import android.app.Activity;
 import android.app.Application;
+import android.util.Log;
 
+import com.xyc.fastdevproject.R;
+import com.xyc.fastdevproject.okhttp.MyOkhttpUtils;
+
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
+
+import me.weyye.hipermission.HiPermission;
+import me.weyye.hipermission.PermissionCallback;
+import me.weyye.hipermission.PermissionItem;
 
 /**
  * Created by hasee on 2018/8/8.
@@ -21,7 +31,9 @@ public class ComApplication extends Application {
     public void onCreate() {
         super.onCreate();
         ApplicationHolder.getInstance().setAppContext(this);
-       // CrashManager.getInstance().init(this); //初始化本地崩溃日志收集
+         CrashManager.getInstance().init(this); //初始化本地崩溃日志收集
+        checkPermission();
+        MyOkhttpUtils.initOkhttp(this);
     }
 
     /**
@@ -32,6 +44,56 @@ public class ComApplication extends Application {
     public static ComApplication getApp() {
         return mzjApplication;
     }
+
+    /**
+     * 初始化需要申请的权限
+     *
+     * @return
+     */
+    private List<PermissionItem> initPermissionList() {
+        List<PermissionItem> permissionItems = new ArrayList<>();
+        permissionItems.add(new PermissionItem(Manifest.permission.WRITE_EXTERNAL_STORAGE, "存储权限", R.drawable.permission_ic_storage));
+        return permissionItems;
+    }
+
+    /**
+     * 安卓6.0动态检查权限
+     *
+     * @param
+     */
+    private void checkPermission() {
+        List<PermissionItem> permissionItems = initPermissionList();
+        if (permissionItems == null || permissionItems.size() == 0) {
+            return;
+        }
+        HiPermission.create(this)
+                .title("权限申请")
+                .permissions(permissionItems)
+                .msg("权限申请")
+                .animStyle(R.style.PermissionAnimScale)
+                .style(R.style.PermissionDefaultBlueStyle)
+                .checkMutiPermission(new PermissionCallback() {
+                    @Override
+                    public void onClose() {
+                        Log.d("xyc", "onClose: 1");
+                    }
+
+                    @Override
+                    public void onFinish() {
+                    }
+
+                    @Override
+                    public void onDeny(String permission, int position) {
+                        Log.d("xyc", "onDeny:1 ");
+                    }
+
+                    @Override
+                    public void onGuarantee(String permission, int position) {
+                        Log.d("xyc", "onGuarantee:1 ");
+                    }
+                });
+    }
+
     /**
      * 添加activity
      *
@@ -47,6 +109,7 @@ public class ComApplication extends Application {
             mActivityList.add(activity);
         }
     }
+
     /**
      * 退出栈中所有的activity，用于退出登录
      */
@@ -58,13 +121,14 @@ public class ComApplication extends Application {
             }
         }
     }
+
     /**
      * 退出栈中所有的activity，用于退出登录
      */
     public void removeAllActivity(Activity currentActivity) {
         if (mActivityList != null) {
             for (Activity activity : mActivityList) {
-                if(activity == currentActivity){
+                if (activity == currentActivity) {
                     return;
                 }
                 removeActivity(activity);
@@ -75,6 +139,7 @@ public class ComApplication extends Application {
 
     /**
      * 获取当前的activity
+     *
      * @return
      */
     public Activity getCurrentActivity() {
@@ -85,6 +150,7 @@ public class ComApplication extends Application {
         }
         return null;
     }
+
     /**
      * 移除activity
      *
