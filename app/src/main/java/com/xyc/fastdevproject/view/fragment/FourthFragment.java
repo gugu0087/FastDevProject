@@ -1,12 +1,9 @@
 package com.xyc.fastdevproject.view.fragment;
 
+import com.xyc.fastdevproject.R;
 import com.xyc.fastdevproject.view.base.BaseFragment;
 
 public class FourthFragment extends BaseFragment {
-    @Override
-    protected void initView() {
-
-    }
 
     @Override
     protected void initData() {
@@ -20,7 +17,12 @@ public class FourthFragment extends BaseFragment {
 
     @Override
     protected int setFrgContainView() {
-        return 0;
+        return R.layout.fourth_frag_layout;
+
+    }
+    @Override
+    protected void initView() {
+
     }
 
 }

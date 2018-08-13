@@ -6,12 +6,16 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.xyc.fastdevproject.R;
+import com.xyc.fastdevproject.view.adapter.FragmentAdapter;
 import com.xyc.fastdevproject.view.base.BaseActivity;
 import com.xyc.fastdevproject.view.base.NoScrollViewPager;
 import com.xyc.fastdevproject.view.fragment.FirstFragment;
 import com.xyc.fastdevproject.view.fragment.FourthFragment;
 import com.xyc.fastdevproject.view.fragment.SecondFragment;
 import com.xyc.fastdevproject.view.fragment.ThirdFragment;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -28,7 +32,8 @@ public class MainActivity extends BaseActivity {
     TextView tvThirdTab;
     @BindView(R.id.tvFourthTab)
     TextView tvFourthTab;
-    public Fragment[] frags = new Fragment[4];
+    private List<Fragment> fragmentList;
+    private FragmentAdapter adapter;
 
     @Override
     protected int getCenterView() {
@@ -44,6 +49,17 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        initData();
+    }
+
+    private void initData() {
+        fragmentList = new ArrayList<>();
+        fragmentList.add(new FirstFragment());
+        fragmentList.add(new SecondFragment());
+        fragmentList.add(new ThirdFragment());
+        tvFourthTab.setVisibility(View.GONE);//隐藏一个
+        adapter = new FragmentAdapter(fragmentList, getSupportFragmentManager());
+        viewPager.setAdapter(adapter);
 
     }
 
@@ -51,24 +67,16 @@ public class MainActivity extends BaseActivity {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.tvFirstTab:
-                if (frags[0] == null) {
-                    frags[0] = new FirstFragment();
-                }
+                viewPager.setCurrentItem(0);
                 break;
             case R.id.tvSecondTab:
-                if (frags[1] == null) {
-                    frags[1] = new SecondFragment();
-                }
+                viewPager.setCurrentItem(1);
                 break;
             case R.id.tvThirdTab:
-                if (frags[2] == null) {
-                    frags[2] = new ThirdFragment();
-                }
+                viewPager.setCurrentItem(2);
                 break;
             case R.id.tvFourthTab:
-                if (frags[3] == null) {
-                    frags[3] = new FourthFragment();
-                }
+
                 break;
         }
 

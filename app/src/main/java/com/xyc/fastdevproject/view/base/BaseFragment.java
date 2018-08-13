@@ -10,12 +10,16 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.xyc.fastdevproject.R;
+import com.xyc.fastdevproject.eventBus.DefaultEvent;
 import com.xyc.fastdevproject.utils.NetworkUtils;
 
 import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.Unbinder;
 
 /**
  * Created by gugu on 2018/6/29.
@@ -23,15 +27,13 @@ import butterknife.ButterKnife;
 
 public abstract class BaseFragment extends Fragment {
     protected View containView;
-    private View mAddContentView;
-    private View mAddHeaderView;
-    /*    private LinearLayout llEmptyPage;
-        private TextView tvConnectTip;*/
+
     private LinearLayout llCenterView;
     @BindView(R.id.llEmptyPage)
     LinearLayout llEmptyPage;
     @BindView(R.id.tvConnectTip)
     TextView tvConnectTip;
+    private Unbinder bindObj;
 
     @Nullable
     @Override
@@ -39,14 +41,14 @@ public abstract class BaseFragment extends Fragment {
 
         containView = inflater.inflate(R.layout.frag_base_layout, null);
 
-        LinearLayout llCenterView = containView.findViewById(R.id.llCenterView);
+        llCenterView = containView.findViewById(R.id.llCenterView);
 
         if (setFrgContainView() != 0) {
             llCenterView.removeAllViews();
-            mAddContentView = LayoutInflater.from(getActivity()).inflate(setFrgContainView(), null);
+            View mAddContentView = LayoutInflater.from(getActivity()).inflate(setFrgContainView(), null);
+            llCenterView.addView(mAddContentView);
         }
-        ButterKnife.bind(this, mAddContentView);
-
+        bindObj = ButterKnife.bind(this, containView);
         initView();
         initData();
         setNetErrorView();
@@ -66,6 +68,27 @@ public abstract class BaseFragment extends Fragment {
         if (!EventBus.getDefault().isRegistered(this)) {
             EventBus.getDefault().register(this);
         }
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        if (bindObj != null) {
+            bindObj.unbind();
+        }
+        if (EventBus.getDefault().isRegistered(this)) {
+            EventBus.getDefault().unregister(this);
+        }
+    }
+
+    /**
+     * 全局处理一些判断的时候可以用
+     *
+     * @param event
+     */
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onDefaultEventBus(DefaultEvent event) {
+
     }
 
     /**
@@ -104,15 +127,6 @@ public abstract class BaseFragment extends Fragment {
     }
 
 
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        if (EventBus.getDefault().isRegistered(this)) {
-            EventBus.getDefault().unregister(this);
-        }
-
-    }
-
     /**
      * 一些View的相关操作
      */
@@ -130,9 +144,5 @@ public abstract class BaseFragment extends Fragment {
      */
     protected abstract int setFrgContainView();
 
-
-    public View getmAddContentView() {
-        return mAddContentView;
-    }
 }
 
