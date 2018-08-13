@@ -12,6 +12,7 @@ import com.xyc.okhttputils.callback.Callback;
 import com.xyc.okhttputils.request.RequestCall;
 import com.xyc.okhttputils.utils.OkHttpUtils;
 
+
 import org.json.JSONObject;
 
 import java.io.File;
@@ -20,6 +21,7 @@ import java.util.Map;
 import okhttp3.Call;
 import okhttp3.MediaType;
 import okhttp3.Response;
+
 
 /**
  * Created by hasee on 2017/12/13.
@@ -128,7 +130,7 @@ public class DataManager {
             }
 
             @Override
-            public void onError(Response response,Call call, Exception e, int i) {
+            public void onError(Response response, Call call, Exception e, int i) {
                 if(listener!=null){
                     listener.onFailedResponse(response,e.getMessage());
                 }
