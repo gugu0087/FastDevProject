@@ -1,12 +1,12 @@
-package com.xyc.fastdevproject;
+package com.xyc.fastdevproject.view.activity;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
+import com.xyc.fastdevproject.R;
 import com.xyc.fastdevproject.utils.ToastUtil;
-import com.xyc.fastdevproject.view.activity.BaseActivity;
+import com.xyc.fastdevproject.view.base.BaseActivity;
 
 import butterknife.BindView;
 import butterknife.OnClick;

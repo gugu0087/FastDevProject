@@ -1,4 +1,4 @@
-package com.xyc.fastdevproject.view.activity;
+package com.xyc.fastdevproject.view.base;
 
 import android.app.Activity;
 import android.os.Build;
