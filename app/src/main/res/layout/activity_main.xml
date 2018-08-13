@@ -56,7 +56,7 @@
 
     </LinearLayout>
 
-    <com.xyc.fastdevproject.view.base.NoScrollViewPager
+    <com.xyc.fastdevproject.view.views.NoScrollViewPager
         android:id="@+id/viewPager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

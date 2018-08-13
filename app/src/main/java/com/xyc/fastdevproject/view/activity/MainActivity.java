@@ -8,11 +8,10 @@ import android.widget.TextView;
 import com.xyc.fastdevproject.R;
 import com.xyc.fastdevproject.view.adapter.FragmentAdapter;
 import com.xyc.fastdevproject.view.base.BaseActivity;
-import com.xyc.fastdevproject.view.base.NoScrollViewPager;
 import com.xyc.fastdevproject.view.fragment.FirstFragment;
-import com.xyc.fastdevproject.view.fragment.FourthFragment;
 import com.xyc.fastdevproject.view.fragment.SecondFragment;
 import com.xyc.fastdevproject.view.fragment.ThirdFragment;
+import com.xyc.fastdevproject.view.views.NoScrollViewPager;
 
 import java.util.ArrayList;
 import java.util.List;

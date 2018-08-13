@@ -1,4 +1,4 @@
-package com.xyc.fastdevproject.view.base;
+package com.xyc.fastdevproject.view.views;
 
 import android.content.Context;
 import android.support.v4.view.ViewPager;
