@@ -1,19 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="com.xyc.fastdevproject.MainActivity">
+    android:background="@color/white"
+    android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/tvTips"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
-</android.support.constraint.ConstraintLayout>
+    <LinearLayout
+        android:id="@+id/llTabLayout"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/main_bg_gray"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal"
+        android:paddingTop="5dp">
+
+        <TextView
+            android:id="@+id/tvFirstTab"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:drawableTop="@drawable/main_frag_home_icon_selector"
+            android:gravity="center"
+            android:text="首页"
+            android:textColor="@drawable/com_text_blue_gray_selector" />
+
+        <TextView
+            android:id="@+id/tvSecondTab"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:drawableTop="@drawable/main_frag_home_icon_selector"
+            android:gravity="center"
+            android:text="任务"
+            android:textColor="@drawable/com_text_blue_gray_selector" />
+
+        <TextView
+            android:id="@+id/tvThirdTab"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:drawableTop="@drawable/main_frag_home_icon_selector"
+            android:gravity="center"
+            android:text="优化"
+            android:textColor="@drawable/com_text_blue_gray_selector" />
+
+        <TextView
+            android:id="@+id/tvFourthTab"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:drawableTop="@drawable/main_frag_home_icon_selector"
+            android:gravity="center"
+            android:text="库"
+            android:textColor="@drawable/com_text_blue_gray_selector" />
+
+    </LinearLayout>
+
+    <com.xyc.fastdevproject.view.base.NoScrollViewPager
+        android:id="@+id/viewPager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/llTabLayout" />
+</RelativeLayout>
