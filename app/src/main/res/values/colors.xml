@@ -9,5 +9,8 @@
     <color name="text_gray">#AAAAAA</color>
     <color name="com_text_gray_color">#B2B2B2</color>
     <color name="main_bg_gray">#F6F6F6</color>
+    <color name="main_page_number_color">#04040F</color>
+    <color name="text_color">#414141</color>
+    <color name="divider_color">#e5e5e5</color>
 
 </resources>
