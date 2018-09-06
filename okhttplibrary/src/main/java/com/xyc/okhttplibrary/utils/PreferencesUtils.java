@@ -1,13 +1,10 @@
-package com.xyc.fastdevproject.utils;
+package com.xyc.okhttplibrary.utils;
 
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.text.TextUtils;
 import android.util.Base64;
-
-import com.xyc.fastdevproject.common.ApplicationHolder;
-
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -22,7 +19,15 @@ import java.io.Serializable;
 public class PreferencesUtils {
 
     public static String PREFERENCE_NAME = "TrineaAndroidCommon";
-    private static Context context = ApplicationHolder.getInstance().getAppContext();
+    private static Context context;
+
+    public static Context getContext() {
+        return context;
+    }
+
+    public static void setContext(Context context) {
+        PreferencesUtils.context = context;
+    }
 
     public static boolean putString(String key, String value) {
 

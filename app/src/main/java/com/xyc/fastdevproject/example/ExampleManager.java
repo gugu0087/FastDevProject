@@ -9,8 +9,9 @@ import com.lzy.okgo.callback.BitmapCallback;
 import com.lzy.okgo.callback.FileCallback;
 import com.lzy.okgo.model.Progress;
 import com.lzy.okgo.model.Response;
-import com.xyc.fastdevproject.okhttp.DialogCallback;
-import com.xyc.fastdevproject.okhttp.JsonCallback;
+import com.xyc.okhttplibrary.okgo.DialogCallback;
+import com.xyc.okhttplibrary.okgo.JsonCallback;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 import java.io.File;
