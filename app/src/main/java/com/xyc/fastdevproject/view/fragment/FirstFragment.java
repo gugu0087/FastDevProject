@@ -1,7 +1,6 @@
 package com.xyc.fastdevproject.view.fragment;
 
 import android.support.annotation.NonNull;
-import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -11,6 +10,7 @@ import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 import com.xyc.fastdevproject.R;
+import com.xyc.fastdevproject.example.ExampleManager;
 import com.xyc.fastdevproject.view.base.BaseFragment;
 
 import butterknife.BindView;

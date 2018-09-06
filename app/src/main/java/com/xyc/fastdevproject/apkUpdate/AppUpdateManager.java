@@ -7,18 +7,10 @@ import android.os.Build;
 import android.support.v4.content.FileProvider;
 import android.util.Log;
 import com.xyc.fastdevproject.common.ApplicationHolder;
-import com.xyc.fastdevproject.common.CommonUrl;
-import com.xyc.fastdevproject.eventBus.ApkInfoEvent;
 import com.xyc.fastdevproject.model.ApkInfoModel;
 import com.xyc.fastdevproject.model.VersionModel;
-import com.xyc.fastdevproject.okhttp.DataManager;
-import com.xyc.fastdevproject.okhttp.MyOkhttpUtils;
-import com.xyc.okhttputils.callback.GenericsCallback;
-import com.xyc.okhttputils.request.JsonGenericsSerializator;
-import org.greenrobot.eventbus.EventBus;
 import java.io.File;
 import java.io.IOException;
-import okhttp3.Call;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -30,7 +22,7 @@ import okhttp3.Response;
 public class AppUpdateManager {
 
     public static AppUpdateManager instance = null;
-    private static DataManager dataInstance = null;
+   // private static DataManager dataInstance = null;
 
     private AppUpdateManager() {
 
@@ -40,9 +32,9 @@ public class AppUpdateManager {
         if (instance == null) {
             instance = new AppUpdateManager();
         }
-        if (dataInstance == null) {
-            dataInstance = DataManager.getInstance();
-        }
+       /* if (dataInstance == null) {
+            dataInstance = null;
+        }*/
         return instance;
     }
 
@@ -50,7 +42,7 @@ public class AppUpdateManager {
         if (url == null) {
             return 0;
         }
-        OkHttpClient okhttpClient = MyOkhttpUtils.getOkHttpClient();
+        OkHttpClient okhttpClient =null /*MyOkhttpUtils.getOkHttpClient()*/;
         Request request = new Request.Builder().url(url).build();
         try {
             Response response = okhttpClient.newCall(request).execute();
@@ -65,7 +57,7 @@ public class AppUpdateManager {
         return 0;
     }
 
-    public void getApkVersionInfo(final boolean isSelfCheck) {
+ /*   public void getApkVersionInfo(final boolean isSelfCheck) {
         dataInstance.sendGetRequestData(CommonUrl.GET_APK_VERSION_INFO,null)
                 .execute(new GenericsCallback<ApkInfoModel>(new JsonGenericsSerializator()) {
                     @Override
@@ -79,7 +71,7 @@ public class AppUpdateManager {
                         EventBus.getDefault().post(new ApkInfoEvent(apkInfoModel, isSelfCheck));
                     }
                 });
-    }
+    }*/
 
     public boolean needUpdateApk(ApkInfoModel apkInfoModel) {
         if (apkInfoModel == null) {

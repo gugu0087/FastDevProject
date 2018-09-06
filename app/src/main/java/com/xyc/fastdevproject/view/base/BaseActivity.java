@@ -92,7 +92,7 @@ public abstract class BaseActivity extends AppCompatActivity implements DrawerLa
      * @param event
      */
     @Subscribe(threadMode = ThreadMode.MAIN)
-    public void onDefaultEventBus(DefaultEvent event) {
+    public void onBaseEventBus (DefaultEvent event) {
 
     }
 

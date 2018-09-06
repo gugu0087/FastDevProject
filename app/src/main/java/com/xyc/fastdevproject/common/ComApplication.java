@@ -15,7 +15,6 @@ import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.footer.ClassicsFooter;
 import com.scwang.smartrefresh.layout.header.ClassicsHeader;
 import com.xyc.fastdevproject.R;
-import com.xyc.fastdevproject.okhttp.MyOkhttpUtils;
 import com.xyc.fastdevproject.utils.PickViewUtil;
 
 import java.util.ArrayList;
@@ -61,7 +60,6 @@ public class ComApplication extends Application {
         ApplicationHolder.getInstance().setAppContext(this);
          CrashManager.getInstance().init(this); //初始化本地崩溃日志收集
         checkPermission();
-        MyOkhttpUtils.initOkhttp(this);
         PickViewUtil.initTimePickOptions(this);
 
     }

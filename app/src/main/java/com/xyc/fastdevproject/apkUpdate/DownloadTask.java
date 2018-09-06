@@ -2,7 +2,6 @@ package com.xyc.fastdevproject.apkUpdate;
 
 import android.os.AsyncTask;
 
-import com.xyc.fastdevproject.okhttp.MyOkhttpUtils;
 
 import java.io.File;
 import java.io.IOException;
@@ -65,7 +64,7 @@ public class DownloadTask extends AsyncTask<String, Integer, Integer> {
                 return TYPE_SUCCESS;
             }
         }
-        OkHttpClient okhttpClient = MyOkhttpUtils.getOkHttpClient();
+        OkHttpClient okhttpClient = null ;//MyOkhttpUtils.getOkHttpClient();
         Request request = new Request.Builder().url(downloadUrl)
                 .addHeader("RANGE", "bytes=" + downloadLength + "-") //断点续传要用到的，指示下载的区间
                 .build();
