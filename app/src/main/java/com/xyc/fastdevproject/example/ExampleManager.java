@@ -9,8 +9,10 @@ import com.lzy.okgo.callback.BitmapCallback;
 import com.lzy.okgo.callback.FileCallback;
 import com.lzy.okgo.model.Progress;
 import com.lzy.okgo.model.Response;
+import com.xyc.fastdevproject.common.CommonParams;
 import com.xyc.okhttplibrary.okgo.DialogCallback;
 import com.xyc.okhttplibrary.okgo.JsonCallback;
+import com.xyc.okhttplibrary.utils.PreferencesUtils;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -48,13 +50,14 @@ public class ExampleManager {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        OkGo.<User>post(ExCommonUrl.user_test)
+        OkGo.<User>post(ExCommonUrl.LOGIN)
                 .tag(this)
                 .upJson(params)
                 .execute(new JsonCallback<User>() {
                     @Override
                     public void onSuccess(Response<User> response) {
-
+                        String token = response.body().getToken();
+                        PreferencesUtils.putString(CommonParams.USER_TOKEN,token);
                     }
                 });
     }
@@ -134,13 +137,14 @@ public class ExampleManager {
      * 普通的文件下载
      * downloadProgress 已经回调在主线程了，可以直接刷新UI
      */
-    public void getFiles() {
+    public void downLoadFiles() {
         OkGo.<File>get(ExCommonUrl.user_test)
                 .tag(this)
                 .execute(new FileCallback() {
                     @Override
                     public void onSuccess(Response<File> response) {
                         // file 为文件数据
+
                     }
 
                     @Override
@@ -158,7 +162,7 @@ public class ExampleManager {
      */
     public void uploadFile() {
         List<File> files = new ArrayList<>();
-        OkGo.<String>post(ExCommonUrl.user_test)
+        OkGo.<String>post(ExCommonUrl.GET_APK_VERSION_INFO)
                 .tag(this)
                 .isMultipart(false)
                 .params("key1", new File("filePath1"))

@@ -42,10 +42,20 @@ public class FirstFragment extends BaseFragment {
             public void onClick(View v) {
                 refreshLayout.finishRefresh();
                 refreshLayout.finishLoadMore();
+                //getUserInfo();
+                getMsg();
             }
         });
 
-}
+    }
+
+    private void getMsg(){
+        ExampleManager.getInstance().getMessageWithDialog(null,null,getActivity());
+    }
+
+    private void getUserInfo() {
+        ExampleManager.getInstance().getUserInfo();
+    }
 
     @Override
     protected void initData() {

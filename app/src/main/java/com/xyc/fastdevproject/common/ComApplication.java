@@ -6,6 +6,7 @@ import android.app.Application;
 import android.content.Context;
 import android.util.Log;
 
+import com.lzy.okgo.model.HttpHeaders;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.DefaultRefreshFooterCreator;
 import com.scwang.smartrefresh.layout.api.DefaultRefreshHeaderCreator;
@@ -16,6 +17,7 @@ import com.scwang.smartrefresh.layout.footer.ClassicsFooter;
 import com.scwang.smartrefresh.layout.header.ClassicsHeader;
 import com.xyc.fastdevproject.R;
 import com.xyc.fastdevproject.utils.PickViewUtil;
+import com.xyc.okhttplibrary.utils.PreferencesUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -61,6 +63,15 @@ public class ComApplication extends Application {
          CrashManager.getInstance().init(this); //初始化本地崩溃日志收集
         checkPermission();
         PickViewUtil.initTimePickOptions(this);
+        PreferencesUtils.setContext(this);
+        //initOkGo();// 初始化okGo配置
+    }
+
+    /**
+     * 全局配置一些公共参数，或者公共头部
+     */
+    private void initOkGo(){
+        HttpHeaders headers  = new HttpHeaders();
 
     }
 
