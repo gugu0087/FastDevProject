@@ -26,6 +26,8 @@ import java.util.concurrent.CopyOnWriteArrayList;
 import me.weyye.hipermission.HiPermission;
 import me.weyye.hipermission.PermissionCallback;
 import me.weyye.hipermission.PermissionItem;
+import me.yokeyword.fragmentation.BuildConfig;
+import me.yokeyword.fragmentation.Fragmentation;
 
 /**
  * Created by hasee on 2018/8/8.
@@ -34,6 +36,7 @@ import me.weyye.hipermission.PermissionItem;
 public class ComApplication extends Application {
     public static ComApplication mzjApplication;
     public List<Activity> mActivityList = null;
+
     //static 代码段可以防止内存泄露
     static {
         //设置全局的Header构建器
@@ -53,6 +56,7 @@ public class ComApplication extends Application {
             }
         });
     }
+
     /**
      * 在这里做一些全局的初始化操作
      */
@@ -60,18 +64,28 @@ public class ComApplication extends Application {
     public void onCreate() {
         super.onCreate();
         ApplicationHolder.getInstance().setAppContext(this);
-         CrashManager.getInstance().init(this); //初始化本地崩溃日志收集
+        CrashManager.getInstance().init(this); //初始化本地崩溃日志收集
         checkPermission();
         PickViewUtil.initTimePickOptions(this);
         PreferencesUtils.setContext(this);
         //initOkGo();// 初始化okGo配置
+        initFragmentation();
     }
+
+    private void initFragmentation() {
+        Fragmentation.builder()
+                // 显示悬浮球 ; 其他Mode:SHAKE: 摇一摇唤出   NONE：隐藏
+                .stackViewMode(Fragmentation.BUBBLE)
+                .debug(BuildConfig.DEBUG)
+                .install();
+    }
+
 
     /**
      * 全局配置一些公共参数，或者公共头部
      */
-    private void initOkGo(){
-        HttpHeaders headers  = new HttpHeaders();
+    private void initOkGo() {
+        HttpHeaders headers = new HttpHeaders();
 
     }
 

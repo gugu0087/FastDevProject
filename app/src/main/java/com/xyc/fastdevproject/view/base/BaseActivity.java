@@ -32,8 +32,9 @@ import butterknife.OnClick;
 import me.weyye.hipermission.HiPermission;
 import me.weyye.hipermission.PermissionCallback;
 import me.weyye.hipermission.PermissionItem;
+import me.yokeyword.fragmentation.SupportActivity;
 
-public abstract class BaseActivity extends AppCompatActivity implements DrawerLayout.DrawerListener {
+public abstract class BaseActivity extends SupportActivity implements DrawerLayout.DrawerListener {
 
     @BindView(R.id.drawerLayout)
     DrawerLayout drawerLayout;
