@@ -19,7 +19,7 @@ import java.io.Serializable;
 public class PreferencesUtils {
 
     public static String PREFERENCE_NAME = "TrineaAndroidCommon";
-    private static Context context;
+    private static Context context ;
 
     public static Context getContext() {
         return context;

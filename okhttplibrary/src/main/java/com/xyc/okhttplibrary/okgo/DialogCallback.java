@@ -20,6 +20,7 @@ import android.app.ProgressDialog;
 import android.view.Window;
 
 import com.lzy.okgo.request.base.Request;
+import com.xyc.okhttplibrary.utils.PreferencesUtils;
 
 
 /**
@@ -47,13 +48,26 @@ public abstract class DialogCallback<T> extends JsonCallback<T> {
         super();
         initDialog(activity);
     }
+    /**
+     * 登录成功设置token，这里拿
+     *
+     * @return
+     */
+    private String getToken() {
+        return PreferencesUtils.getString("token");
+    }
 
     @Override
     public void onStart(Request<T, ? extends Request> request) {
-        request.headers("X-Authorization", "bearer MjExNi1va2h0dHAvMy4zLjEtMTUzNjIyOTA2NzY1Ng==");//
+
         if (dialog != null && !dialog.isShowing()) {
             dialog.show();
         }
+        String token = getToken();
+        if (token == null || token.isEmpty()) {
+            return;
+        }
+        request.headers("X-Authorization", "bearer "+token);
     }
 
     @Override
